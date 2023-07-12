@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import style from "./styles/content.module.css"
 
 const TaskForm = ({create}) => {
 
@@ -18,13 +19,16 @@ const TaskForm = ({create}) => {
 
     return (
         <form>
-            <input
-                type='text'
-                placeholder='Enter a new task...'
-                value={taskText}
-                onChange={e => setTaskText(e.target.value)}
-            />
-            <button onClick={addNewTask}>Add a new task</button>
+            <div className={style.forms}>
+                <input
+                    type='text'
+                    placeholder='Enter a new task...'
+                    value={taskText}
+                    onChange={e => setTaskText(e.target.value)}
+                    className={style.inputs}
+                />
+                <button onClick={addNewTask} className={style.buttons}>Add a new task</button>
+            </div>
         </form>
     );
 };

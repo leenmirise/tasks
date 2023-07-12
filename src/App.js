@@ -1,6 +1,7 @@
 import React, {useState, useMemo} from "react";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
+import style from "./components/styles/content.module.css";
 
 function App() {
 
@@ -34,18 +35,21 @@ function App() {
     }, [search, tasks])
 
     return (
-        <div className="App">
-            <input
-                type='text'
-                placeholder='Filter...'
-                value={search}
-                onChange={e => (setSearch(e.target.value))}
-            />
-            {tasks.length !== 0
-                ? <TaskList tasks={searchTasks} remove={removeTask} update={updateTask}/>
-                : <h1>Tasks not found :(</h1>
-            }
-            <TaskForm  create={createTask}/>
+        <div className="App" style={{display: 'flex', justifyContent: 'center'}}>
+            <div className={style.content}>
+                <input
+                    type='text'
+                    placeholder='Search...'
+                    value={search}
+                    onChange={e => (setSearch(e.target.value))}
+                    className={style.inputs}
+                />
+                {tasks.length !== 0
+                    ? <TaskList tasks={searchTasks} remove={removeTask} update={updateTask}/>
+                    : <h1>Tasks not found :(</h1>
+                }
+                <TaskForm  create={createTask}/>
+            </div>
         </div>
     );
 }

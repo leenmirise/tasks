@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import style from "./styles/content.module.css";
 
 const TaskItem = (props) => {
 
@@ -33,29 +34,37 @@ const TaskItem = (props) => {
     return (
         <div>
             <div>
-                <strong>{props.number}</strong>
                 {isEditing
                     ? (
-                        <div>
-                            <input type='text' value={editedText} onChange={e => setEditedText(e.target.value)} />
-                            <button onClick={saveClick}>Save</button>
-                            <button onClick={cancelClick}>Cancel</button>
+                        <div  className={style.task}>
+                            <div>
+                                <strong>{props.number}</strong>
+                                <input
+                                    type='text'
+                                    value={editedText}
+                                    onChange={e => setEditedText(e.target.value)}
+                                    className={style.inputs}
+                                />
+                            </div>
+                            <div>
+                                <button onClick={saveClick} className={style.buttons}>Save</button>
+                                <button onClick={cancelClick} className={style.buttons}>Cancel</button>
+                            </div>
                         </div>
                     )
                     : (
-                        <label>
-                            <input type='checkbox' id={props.task.id} checked={isChecked} onChange={checkboxChange} />
-                            <span style={textStyle}>{props.task.todo}</span>
-                        </label>
-                    )}
-            </div>
-            <div>
-                {isEditing
-                    ? null
-                    : (
-                        <div>
-                            <button onClick={() => setIsEditing(true)}>Edit</button>
-                            <button onClick={() => props.remove(props.task)}>Delete</button>
+                        <div className={style.task}>
+                            <div>
+                                <strong>{props.number}</strong>
+                                <label>
+                                    <input type='checkbox' id={props.task.id} checked={isChecked} onChange={checkboxChange} />
+                                    <span style={textStyle}>{props.task.todo}</span>
+                                </label>
+                            </div>
+                            <div>
+                                <button onClick={() => setIsEditing(true)} className={style.buttons}>Edit</button>
+                                <button onClick={() => props.remove(props.task)} className={style.buttons}>Delete</button>
+                            </div>
                         </div>
                     )}
             </div>

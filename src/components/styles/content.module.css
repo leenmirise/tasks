@@ -1,0 +1,41 @@
+.content{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputs{
+    padding: 5px 5px 5px 5px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 20px;
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+.forms{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons{
+    padding: 10px 10px 10px 10px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: rgba(143, 188, 143, 0.44);
+    margin: 0 5px 0 5px;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
