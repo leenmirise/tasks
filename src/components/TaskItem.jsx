@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import style from "./styles/content.module.css";
 
 const TaskItem = (props) => {
 
     const [isChecked, setIsChecked] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const [editedText, setEditedText] = useState(props.task.todo);
+    const [editedText, setEditedText] = useState(props.task.taskText);
 
     const checkboxChange = () => {
         setIsChecked(!isChecked);
@@ -21,13 +21,12 @@ const TaskItem = (props) => {
     };
 
     const saveClick = () => {
-        //props.edit(props.task, editedText);
         props.update(props.task, editedText)
         setIsEditing(false);
     };
 
     const cancelClick = () => {
-        setEditedText(props.task.todo);
+        setEditedText(props.task.taskText);
         setIsEditing(false);
     };
 
@@ -58,7 +57,7 @@ const TaskItem = (props) => {
                                 <strong>{props.number}</strong>
                                 <label>
                                     <input type='checkbox' id={props.task.id} checked={isChecked} onChange={checkboxChange} />
-                                    <span style={textStyle}>{props.task.todo}</span>
+                                    <span style={textStyle}>{props.task.taskText}</span>
                                 </label>
                             </div>
                             <div>

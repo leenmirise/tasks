@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from "react";
+import {useState, useMemo, useCallback} from "react";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import style from "./components/styles/content.module.css";
@@ -6,33 +6,34 @@ import style from "./components/styles/content.module.css";
 function App() {
 
     const [tasks, setTasks] = useState([
-        {id: 1, todo: 'Поспать'},
-        {id: 2, todo: 'Доделать задание'},
+        {id: 1, taskText: 'Поспать'},
+        {id: 2, taskText: 'Доделать задание'},
     ])
-
-    const createTask = (newTask) => {
-        setTasks([...tasks, newTask]);
-    }
-
-    const removeTask = (task) => {
-        setTasks(tasks.filter(t => t.id !== task.id))
-    }
-
-    const updateTask = (task, editedText) => {
-        const updatedTasks = tasks.map((t) => {
-            if (t.id === task.id) {
-                return { ...t, todo: editedText };
-            }
-            return t;
-        });
-        setTasks(updatedTasks);
-    }
 
     const [search, setSearch] = useState('');
 
     const searchTasks = useMemo(() => {
-        return tasks.filter(task => task.todo.toLowerCase().includes(search.toLowerCase()))
+        return tasks.filter(task => task.taskText.toLowerCase().includes(search.toLowerCase()))
     }, [search, tasks])
+
+    const createTask = useCallback((newTask) => {
+        setTasks((tasks) => [...tasks, newTask]);
+    }, [setTasks]);
+
+    const removeTask = useCallback((task) => {
+        setTasks((tasks) => tasks.filter(t => t.id !== task.id));
+    }, [setTasks]);
+
+    const updateTask = useCallback((task, editedText) => {
+        setTasks((tasks) => {
+            return tasks.map((t) => {
+                if (t.id === task.id) {
+                    return { ...t, taskText: editedText };
+                }
+                return t;
+            });
+        });
+    }, [setTasks]);
 
     return (
         <div className="App" style={{display: 'flex', justifyContent: 'center'}}>
@@ -46,7 +47,7 @@ function App() {
                 />
                 {tasks.length !== 0
                     ? <TaskList tasks={searchTasks} remove={removeTask} update={updateTask}/>
-                    : <h1>Tasks not found :(</h1>
+                    : <h3>Tasks not found :(</h3>
                 }
                 <TaskForm  create={createTask}/>
             </div>

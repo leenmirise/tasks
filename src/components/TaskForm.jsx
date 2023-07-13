@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import style from "./styles/content.module.css"
 
 const TaskForm = ({create}) => {
@@ -10,7 +10,7 @@ const TaskForm = ({create}) => {
         if(taskText !== ''){
             const newTask = {
                 id: Date.now(),
-                todo: taskText
+                taskText: taskText
             };
             create(newTask);
             setTaskText('');
