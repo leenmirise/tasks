@@ -1,7 +1,19 @@
+import React from "react";
 import TaskItem from "./TaskItem";
 import style from './styles/content.module.css';
 
-const TaskList = ({tasks, remove, update}) => {
+interface Task {
+    id: number;
+    taskText: string;
+}
+
+interface TaskListForm {
+    tasks: Task[];
+    remove: (task: Task) => void;
+    update: (task: Task, editedTask: string) => void;
+}
+
+const TaskList: React.FC<TaskListForm> = ({tasks, remove, update}) => {
     return (
         <div className={style.list}>
             <h3>To-do list</h3>
