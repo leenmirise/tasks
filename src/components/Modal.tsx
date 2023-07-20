@@ -1,33 +1,23 @@
 import { FC } from 'react';
-import style from './styles/content.module.css';
 import { ModalProps } from './types/types.d';
+import { ModalContent, ModalStyle, Buttons } from './styles/styles';
 
 const Modal: FC<ModalProps> = ({ visible, setVisible, task, remove }) => {
-  const rootClasses: string[] = [style.modal];
-
-  if (visible) {
-    rootClasses.push(style.active);
-  }
-
   const deleteTask = () => {
     remove(task);
     setVisible(false);
   };
 
   return (
-    <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-      <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
+    <ModalStyle visible={visible} onClick={() => setVisible(false)}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
         <p>Are you sure you want to delete this task?</p>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <button className={style.buttons} onClick={deleteTask}>
-            Yes
-          </button>
-          <button className={style.buttons} onClick={() => setVisible(false)}>
-            No
-          </button>
+          <Buttons onClick={deleteTask}>Yes</Buttons>
+          <Buttons onClick={() => setVisible(false)}>No</Buttons>
         </div>
-      </div>
-    </div>
+      </ModalContent>
+    </ModalStyle>
   );
 };
 

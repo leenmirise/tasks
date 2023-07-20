@@ -1,6 +1,6 @@
 import React, { useState, FC } from 'react';
 import { TaskFormProps } from './types/types.d';
-import style from './styles/content.module.css';
+import { Forms, Buttons, Inputs } from './styles/styles';
 
 const TaskForm: FC<TaskFormProps> = ({ create }) => {
   const [taskText, setTaskText] = useState('');
@@ -19,18 +19,15 @@ const TaskForm: FC<TaskFormProps> = ({ create }) => {
 
   return (
     <form>
-      <div className={style.forms}>
-        <input
+      <Forms>
+        <Inputs
           type="text"
           placeholder="Enter a new task..."
           value={taskText}
           onChange={(e) => setTaskText(e.target.value)}
-          className={style.inputs}
         />
-        <button onClick={addNewTask} className={style.buttons}>
-          Add a new task
-        </button>
-      </div>
+        <Buttons onClick={addNewTask}>Add a new task</Buttons>
+      </Forms>
     </form>
   );
 };

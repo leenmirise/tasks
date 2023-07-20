@@ -1,8 +1,8 @@
 import { useState, useMemo, useCallback } from 'react';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
-import style from './components/styles/content.module.css';
 import { Task } from './components/types/types.d';
+import { AppStyle, Content, Inputs } from './components/styles/styles';
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([
@@ -45,23 +45,17 @@ function App() {
   );
 
   return (
-    <div className="App" style={{ display: 'flex', justifyContent: 'center' }}>
-      <div className={style.content}>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className={style.inputs}
-        />
+    <AppStyle className="App">
+      <Content>
+        <Inputs type="text" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
         {tasks.length !== 0 ? (
           <TaskList tasks={searchTasks} remove={removeTask} update={updateTask} />
         ) : (
           <h3>Tasks not found :(</h3>
         )}
         <TaskForm create={createTask} />
-      </div>
-    </div>
+      </Content>
+    </AppStyle>
   );
 }
 
