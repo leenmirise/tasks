@@ -1,19 +1,8 @@
-import React, { SetStateAction } from 'react';
+import { FC } from 'react';
 import style from './styles/content.module.css';
+import { ModalProps } from './types/types.d';
 
-interface Task {
-  id: number;
-  taskText: string;
-}
-
-interface ModalProps {
-  visible: boolean;
-  setVisible: React.Dispatch<SetStateAction<boolean>>;
-  task: Task;
-  remove: (task: Task) => void;
-}
-
-const Modal: React.FC<ModalProps> = ({ visible, setVisible, task, remove }) => {
+const Modal: FC<ModalProps> = ({ visible, setVisible, task, remove }) => {
   const rootClasses: string[] = [style.modal];
 
   if (visible) {

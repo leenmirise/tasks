@@ -2,13 +2,9 @@ import { useState, useMemo, useCallback } from 'react';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import style from './components/styles/content.module.css';
+import { Task } from './components/types/types.d';
 
 function App() {
-  interface Task {
-    id: number;
-    taskText: string;
-  }
-
   const [tasks, setTasks] = useState<Task[]>([
     { id: 1, taskText: 'Поспать' },
     { id: 2, taskText: 'Доделать задание' },
@@ -16,7 +12,7 @@ function App() {
 
   const [search, setSearch] = useState('');
 
-  const searchTasks = useMemo(() => {
+  const searchTasks: Task[] = useMemo(() => {
     return tasks.filter((task) => task.taskText.toLowerCase().includes(search.toLowerCase()));
   }, [search, tasks]);
 

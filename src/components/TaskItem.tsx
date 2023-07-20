@@ -1,21 +1,9 @@
-import React, { useState } from 'react';
+import { useState, FC } from 'react';
 import Modal from './Modal';
 import style from './styles/content.module.css';
+import { TaskItemProps } from './types/types.d';
 
-interface Task {
-  id: number;
-  taskText: string;
-}
-
-interface TaskItemProps {
-  remove: (task: Task) => void;
-  update: (task: Task, editedText: string) => void;
-  number: number;
-  task: Task;
-  key: number;
-}
-
-const TaskItem: React.FC<TaskItemProps> = ({ remove, update, number, task, key }) => {
+const TaskItem: FC<TaskItemProps> = ({ remove, update, number, task }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(task.taskText);

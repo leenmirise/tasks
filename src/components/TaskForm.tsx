@@ -1,16 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
+import { TaskFormProps } from './types/types.d';
 import style from './styles/content.module.css';
 
-interface Task {
-  id: number;
-  taskText: string;
-}
-
-interface TaskFormProps {
-  create: (newTask: Task) => void;
-}
-
-const TaskForm: React.FC<TaskFormProps> = ({ create }) => {
+const TaskForm: FC<TaskFormProps> = ({ create }) => {
   const [taskText, setTaskText] = useState('');
 
   const addNewTask = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
