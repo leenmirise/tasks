@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import TaskItem from './TaskItem';
-import { TaskListProps } from './types/types.d';
+import { TaskListProps } from './types/types';
 
 const TaskList: FC<TaskListProps> = ({ tasks, remove, update }) => {
   return (

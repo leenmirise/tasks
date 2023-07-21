@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import { TaskFormProps } from './types/types.d';
+import { TaskFormProps } from './types/types';
 import { Forms, Buttons, Inputs } from './styles/styles';
 
 const TaskForm: FC<TaskFormProps> = ({ create }) => {

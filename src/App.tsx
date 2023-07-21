@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
-import { Task } from './components/types/types.d';
+import { Task } from './components/types/types';
 import { AppStyle, Content, Inputs } from './components/styles/styles';
 
 function App() {

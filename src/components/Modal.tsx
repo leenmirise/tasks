@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ModalProps } from './types/types.d';
+import { ModalProps } from './types/types';
 import { ModalContent, ModalStyle, Buttons } from './styles/styles';
 
 const Modal: FC<ModalProps> = ({ visible, setVisible, task, remove }) => {

@@ -1,6 +1,6 @@
 import { useState, FC } from 'react';
 import Modal from './Modal';
-import { TaskItemProps } from './types/types.d';
+import { TaskItemProps } from './types/types';
 import { Text, Inputs, Buttons, Tasks } from './styles/styles';
 
 const TaskItem: FC<TaskItemProps> = ({ remove, update, number, task }) => {
